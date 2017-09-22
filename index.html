@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<title> Awesome Character Builder
+</title>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <h1>AWESOME CHARACTER BUILDER</h1>
+  <div id="statOptions">
+    <p>Characters have three stats, intelligence, will and physical.</p>
+    <p>Rate your stats from 1 to 3, no two stats may share the same rating.</p><br><br>
+
+    <p>Intelligence</p>
+    <select id="int">
+      <option value="-">-</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <p>Will</p>
+    <select id="will">
+      <option value="-">-</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <p>Physical</p>
+    <select id="phy">
+      <option value="-">-</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select><br>
+    <input type="button" value="CONFIRM" id="confirmStats">
+  </div>
+  <div id="character">
+    <div id="outputInt"> </div>
+    <div id="outputWill"></div>
+    <div id="outputPhy"></div>
+    <div id="outputAbilities"></div>
+  </div>
+  <div id="abilitySelect"></div>
+  <div id="output5"></div>
+  <script src="script.js"></script>
+  <script src="ability.js"></script>
+</body>
+</html>
