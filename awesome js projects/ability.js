@@ -118,7 +118,7 @@ function gradeDropDown(ability) {
     ability.grade = grades[gradeChoice.selectedIndex];
     currentGrade = grades[gradeChoice.selectedIndex].pool;
     purchase = currentCost * currentGrade;
-    console.log(purchase);
+    console.log('cost: ' + purchase + ' points.');
     budget -= purchase;
     console.log(budget + ' points remaining');
   })

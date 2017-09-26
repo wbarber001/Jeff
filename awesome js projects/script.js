@@ -7,32 +7,39 @@ let intText = document.getElementById('outputInt');
 let willText = document.getElementById('outputWill');
 let phyText = document.getElementById('outputPhy');
 let abilityText = document.getElementById('outputAbilities');
+var intStat;
+var willStat;
+var phyStat;
+var name = prompt('Name your character');
 
 function Character() {
-  this.name = "";
+  this.name = name;
   this.totalReflexDefense = "";
   this.totalSpiritDefense = "";
   this.totalWitsDefense = "";
-  this.int = 0;
-  this.will = 0;
-  this.budget = 0;
+  this.int = intStat;
+  this.will = willStat;
+  this.phy = phyStat;
   this.abilityList = [];
 }
 
 //User input calls function and list user picks on document.
 int.addEventListener('change', function() {
   let intVal = int.options[int.selectedIndex].text;
+  intStat = int.options[int.selectedIndex].value;
   // Add that data to the <div>
   intText.innerHTML = 'INT: ' + intVal;
 })
 
 will.addEventListener('change', function() {
   let willVal = will.options[will.selectedIndex].text;
+  willStat = will.options[will.selectedIndex].value;
   willText.innerHTML = 'WILL: ' + willVal;
 })
 
 phy.addEventListener('change', function() {
   let phyVal = phy.options[phy.selectedIndex].text;
+  phyStat = phy.options[phy.selectedIndex].value;
   phyText.innerHTML = 'PHY: ' + phyVal;
 })
 
