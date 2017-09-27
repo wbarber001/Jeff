@@ -34,17 +34,8 @@ select {
   margin: 5px 0 20px 0;
 }
 
-#outputInt {
-  font-size: 25px;
-  margin: 10px 0 10px 0;
-}
-
-#outputWill {
-  font-size: 25px;
-  margin: 10px 0 10px 0;
-}
-
-#outputPhy {
+#outputName, #outputInt, #outputWill, #outputPhy  {
+  text-transform: uppercase;
   font-size: 25px;
   margin: 10px 0 10px 0;
 }
@@ -107,7 +98,7 @@ select {
     border: 1px solid green;
   }
 
-  #output5 {
+  #gradeSelect {
     max-width: 20%;
     clear: both;
     text-align: center;

@@ -11,6 +11,9 @@ var intStat;
 var willStat;
 var phyStat;
 var name = prompt('Name your character');
+let outputName = document.getElementById('outputName');
+let nameText = document.createTextNode(name);
+outputName.appendChild(nameText);
 
 function Character() {
   this.name = name;

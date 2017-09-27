@@ -108,7 +108,7 @@ function abilityDropDown(newCharacter) {
 }
 
 function gradeDropDown(ability) {
-  var outputDiv5 = document.getElementById('output5');
+  var outputDiv5 = document.getElementById('gradeSelect');
   const select = document.createElement('select');
   select.id = 'selectGrade';
   outputDiv5.appendChild(select);
@@ -118,9 +118,13 @@ function gradeDropDown(ability) {
     ability.grade = grades[gradeChoice.selectedIndex];
     currentGrade = grades[gradeChoice.selectedIndex].pool;
     purchase = currentCost * currentGrade;
-    console.log('cost: ' + purchase + ' points.');
+    outputCost = document.getElementById('outputCost');
+    pointCost = document.createTextNode('cost: ' + purchase + ' points.');
+    outputCost.appendChild(pointCost);
     budget -= purchase;
-    console.log(budget + ' points remaining');
+    outputBudget = document.getElementById('outputBudget');
+    pointRemains = document.createTextNode(budget + ' points remaining');
+    outputBudget.appendChild(pointRemains);
   })
   //Loops through the abilityLibrary array and appends the data to the drop down.
   for (var i = 0; i < grades.length; i++) {
