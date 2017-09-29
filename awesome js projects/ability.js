@@ -1,5 +1,5 @@
 var budget = 30;
-
+let currentAbility;
 //This array houses the grade options.
 grades = [
   {text: 'select', grade: '', pool: 0},
@@ -83,54 +83,46 @@ const ward = new Ability('ward', 'spirit', 2);
 //This array houses the ability options.
 const abilityLibrary = [blank, absorb, adhesion, agility, aim, alert, antibody, armor, brains, bind, buff, danger, dodge, drain, elasticity, empathy, empower, endurance, enhanced, field, fight, flight, growth, healOthers, healSelf, induceFear, immaterial, impairMove, impairSense, impervious, inspect, imtimidate, leap, magic, meleeAttack, mindControl, might, multiAbility, multiply, mutualAttack, paralysis, pocketDimension, possession, psiDefense, psychic, radar, rangedAttack, resolve, science, shrink, sneak, speed, steal, strike, technology, telekinesis, telepathy, teleport, thrwart, ward];
 
-//This function creates a drop containing ability gradePicks and appends to the document.
-function abilityDropDown(newCharacter) {
-  var abilitySelect = document.getElementById('abilitySelect');
-  const select = document.createElement('select');
-  select.id = 'selectAbility';
-  abilitySelect.appendChild(select);
-  //Get ability selection.
-  let abilityChoice = document.getElementById('selectAbility');
-  abilityChoice.addEventListener('change', function() {
-    abilityDropText = abilityChoice.options[abilityChoice.selectedIndex].name;
-    currentAbility = abilityLibrary[abilityChoice.selectedIndex];
-    currentCost = abilityLibrary[abilityChoice.selectedIndex].cost;
-    gradeDropDown(currentAbility);
-    newCharacter.abilityList.push(currentAbility);
-  })
-//Loops through the abilityLibrary array and appends the data to the drop down.
+var abilityChoice = document.getElementById('abilitySelect');
+abilityChoice.addEventListener('change', function() {
+  currentAbility = abilityChoice.options[abilityChoice.selectedIndex].value;
+  var newAbility;
+  var newGrade;
   for (var i = 0; i < abilityLibrary.length; i++) {
-      var option = document.createElement("option");
-      option.value = abilityLibrary[i];
-      option.text = abilityLibrary[i].name;
-      select.appendChild(option);
-  }
-}
-
-function gradeDropDown(ability) {
-  var outputDiv5 = document.getElementById('gradeSelect');
-  const select = document.createElement('select');
-  select.id = 'selectGrade';
-  outputDiv5.appendChild(select);
-  //Get grade selection.
-  var gradeChoice = document.getElementById('selectGrade');
-  gradeChoice.addEventListener('change', function() {
-    ability.grade = grades[gradeChoice.selectedIndex];
-    currentGrade = grades[gradeChoice.selectedIndex].pool;
-    purchase = currentCost * currentGrade;
-    outputCost = document.getElementById('outputCost');
-    pointCost = document.createTextNode('cost: ' + purchase + ' points.');
-    outputCost.appendChild(pointCost);
-    budget -= purchase;
-    outputBudget = document.getElementById('outputBudget');
-    pointRemains = document.createTextNode(budget + ' points remaining');
-    outputBudget.appendChild(pointRemains);
+      if (currentAbility == abilityLibrary[i].name ){
+        newAbility = abilityLibrary[i];
+        console.log(newAbility);
+      }
+    }
+    //Get grade selection.
+    var gradeChoice = document.getElementById('gradeSelect');
+    gradeChoice.addEventListener('change', function() {
+      currentGrade = gradeChoice.options[gradeChoice.selectedIndex].value;
+      for (var i = 0; i < grades.length; i++) {
+        if (currentGrade == grades[i].text ){
+          newGrade = grades[i];
+          var newChoice = Object.assign(newAbility, newGrade);
+          console.log(newChoice);
+          newCharacter.abilityList.push(newChoice);
+          purchase = newChoice.cost * newChoice.pool;
+          outputCost = document.getElementById('outputCost');
+          pointCost = document.createTextNode('cost: ' + purchase + ' points.');
+          outputCost.appendChild(pointCost);
+          budget -= purchase;
+          outputBudget = document.getElementById('outputBudget');
+          pointRemains = document.createTextNode(budget + ' points remaining');
+          outputBudget.appendChild(pointRemains);
+          outputAbilities = document.getElementById('outputAbilities');
+          abilityText = document.createTextNode(newChoice.name + ' '+ newChoice.grade + ' ' + newChoice.pool);
+          outputAbilities.appendChild(abilityText);
+        }
+      }
+    })
   })
-  //Loops through the abilityLibrary array and appends the data to the drop down.
-  for (var i = 0; i < grades.length; i++) {
-      var option = document.createElement("option");
-      option.value = grades[i];
-      option.text = grades[i].text;
-      select.appendChild(option);
-  }
-}
+
+
+
+//This function creates a drop containing ability gradePicks and appends to the document.
+/*function abilityDropDown(newCharacter) {
+
+}*/

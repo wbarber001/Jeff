@@ -9,10 +9,10 @@
 </head>
 <body>
   <h1>AWESOME CHARACTER BUILDER</h1>
+  <input type="button" value="START" id="startCharacter">
   <div id="statOptions">
     <p>Characters have three stats, intelligence, will and physical.</p>
-    <p>Rate your stats from 1 to 3, no two stats may share the same rating.</p><br><br>
-
+    <p>Rate your character's stats from 1 to 3, no two stats may share the same rating.</p><br><br>
     <p>Intelligence</p>
     <select id="int">
       <option value="-">-</option>
@@ -20,7 +20,6 @@
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
-
     <p>Will</p>
     <select id="will">
       <option value="-">-</option>
@@ -28,7 +27,6 @@
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
-
     <p>Physical</p>
     <select id="phy">
       <option value="-">-</option>
@@ -47,8 +45,82 @@
     <div id="outputPhy"></div>
     <div id="outputAbilities"></div>
   </div>
-  <div id="abilitySelect"></div>
-  <div id="gradeSelect"></div>
+  <div class="options">
+    <select id="abilitySelect">
+      <option value="select">select</option>
+      <option value="absorb">absorb</option>
+      <option value="adhesion">adhesion</option>
+      <option value="agility">agility</option>
+      <option value="aim">aim</option>
+      <option value="alert">alert</option>
+      <option value="antibody">antibody</option>
+      <option value="armor">armor</option>
+      <option value="brains">brains</option>
+      <option value="bind">bind</option>
+      <option value="buff">buff</option>
+      <option value="danger sense">danger sense</option>
+      <option value="dodge">dodge</option>
+      <option value="drain">drain</option>
+      <option value="elasticity">elasticity</option>
+      <option value="empathy">empathy</option>
+      <option value="empower">empower</option>
+      <option value="endurance">endurance</option>
+      <option value="enhanced sense">enhanced sense</option>
+      <option value="field">field</option>
+      <option value="fight">fight</option>
+      <option value="flight">flight</option>
+      <option value="growth">growth</option>
+      <option value="heal others">heal others</option>
+      <option value="heal self">heal self</option>
+      <option value="induce fear">induce fear</option>
+      <option value="immaterial">immaterial</option>
+      <option value="impair move">impair move</option>
+      <option value="impair sense">impair sense</option>
+      <option value="impervious">impervious</option>
+      <option value="inspect">inspect</option>
+      <option value="imtimidate">imtimidate</option>
+      <option value="leap">leap</option>
+      <option value="magic">magic</option>
+      <option value="melee attack">melee attack</option>
+      <option value="mind control">mind control</option>
+      <option value="might">might</option>
+      <option value="multi-ability">multi-ability</option>
+      <option value="multiply">multiply</option>
+      <option value="mutual attack">mutual attack</option>
+      <option value="paralysis">paralysis</option>
+      <option value="pocket dimension">pocket dimension</option>
+      <option value="possession">possession</option>
+      <option value="psi-defense">psi-defense</option>
+      <option value="psychic">psychic</option>
+      <option value="radar">radar</option>
+      <option value="ranged attack">ranged attack</option>
+      <option value="resolve">resolve</option>
+      <option value="science">science</option>
+      <option value="shrink">shrink</option>
+      <option value="sneak">sneak</option>
+      <option value="speed">speed</option>
+      <option value="steal">steal</option>
+      <option value="strike">strike</option>
+      <option value="technology">technology</option>
+      <option value="telekinesis">telekinesis</option>
+      <option value="telepathy">telepathy</option>
+      <option value="teleport">teleport</option>
+      <option value="thrwart">thrwart</option>
+      <option value="ward">ward</option>
+    </select>
+  </div>
+  <div class="options">
+    <select id="gradeSelect">
+      <option value="select">select</option>
+      <option value="omega">omega</option>
+      <option value="alpha">alpha</option>
+      <option value="super">super</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+  </div>
   <script src="script.js"></script>
   <script src="ability.js"></script>
 </body>

@@ -1,5 +1,3 @@
-//Rate your stats from 1 to 3
-//Access user input, output divs, stores data for use.
 let int = document.getElementById("int");
 let will = document.getElementById("will");
 let phy = document.getElementById("phy");
@@ -10,11 +8,10 @@ let abilityText = document.getElementById('outputAbilities');
 var intStat;
 var willStat;
 var phyStat;
-var name = prompt('Name your character');
-let outputName = document.getElementById('outputName');
-let nameText = document.createTextNode(name);
-outputName.appendChild(nameText);
 
+let startCharacter = document.getElementById('startCharacter');
+startCharacter.addEventListener('click', nameCharacter);
+//This function collects character data.
 function Character() {
   this.name = name;
   this.totalReflexDefense = "";
@@ -24,6 +21,53 @@ function Character() {
   this.will = willStat;
   this.phy = phyStat;
   this.abilityList = [];
+}
+//Names collects char name, calls Character func. prints name to dom.
+function nameCharacter() {
+  name = prompt("What is your character's name?");
+  let outputName = document.getElementById('outputName');
+  let nameText = document.createTextNode(name);
+  outputName.appendChild(nameText);
+  //Show stat drop down.
+  toggleStatDrop();
+  toggleStartButton();
+}
+
+function toggleStatDrop() {
+    var x = document.getElementById('statOptions');
+    if (x.style.display === 'block') {
+        x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
+    }
+}
+
+function toggleStartButton() {
+    var x = document.getElementById('startCharacter');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function toggleAbilityDrop() {
+    var x = document.getElementById('abilitySelect');
+    toggleGradeDrop();
+    if (x.style.display === 'block') {
+        x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
+    }
+}
+
+function toggleGradeDrop() {
+    var x = document.getElementById('gradeSelect');
+    if (x.style.display === 'block') {
+        x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
+    }
 }
 
 //User input calls function and list user picks on document.
@@ -48,13 +92,15 @@ phy.addEventListener('change', function() {
 
 //This function prevents duplicate ability ratings and triggers ability picks.
 function checkRates() {
-    newCharacter = new Character();
   //If no selection have been made program stops.
     if ((int.value == '-') && (will.value == '-') && (phy.value == '-')) {
         return;
     } else if ((int.value != will.value) && (will.value != phy.value) && (int.value != phy.value)) {
-      //Calls function that adds drop down to dv.
-      abilityDropDown(newCharacter);
+      newCharacter = new Character();
+      //Hides stat drop down.
+      toggleStatDrop();
+      //Show ability and grade drop down.
+      toggleAbilityDrop();
       //Catches duplicate selections.
     } else if ((int.value == will.value) || (will.value == phy.value) || (int.value == phy.value)) {
       // Gets div with id of abilitySelect
@@ -69,5 +115,5 @@ function checkRates() {
 }
 
 //Connect confirmation button to checkRates function.
-let button = document.getElementById('confirmStats');
-button.addEventListener('click', checkRates);
+let confirmStats = document.getElementById('confirmStats');
+confirmStats.addEventListener('click', checkRates);

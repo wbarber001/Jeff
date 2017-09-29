@@ -20,6 +20,13 @@ h2 {
   max-width: 50%;
 }
 
+#statOptions,
+#addAbility,
+#gradeSelect,
+#abilitySelect {
+  display: none;
+}
+
 #confirmStats {
   font-size: 18px;
   text-transform: uppercase;
@@ -49,6 +56,10 @@ select {
     margin: auto;
   }
 
+  #startCharacter {
+    margin: auto;
+  }
+
   #statOptions {
     width: auto;
     text-align: center;
@@ -62,7 +73,6 @@ select {
     padding: 0 1em;
     margin: auto;
   }
-
 }
 
 @media (min-width: 769px ) {
@@ -70,6 +80,11 @@ select {
     width: auto;
     text-align: center;
     padding: 0 1em;
+    margin: auto;
+  }
+
+  #startCharacter {
+    display: block;
     margin: auto;
   }
 
@@ -86,7 +101,8 @@ select {
     width: 45%;
     text-align: left;
     padding: 0 1em;
-    margin: auto;
+    margin-left: 3em;
+    border: 1px solid black;
   }
 
   #abilitySelect {
