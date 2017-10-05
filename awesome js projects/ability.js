@@ -130,22 +130,24 @@ abilityChoice.addEventListener('change', function() {
           outputBudget.innerHTML = pointRemains;
           pointCost = '';
           outputCost.innerHTML = pointCost;
+          resetDrop();
         } else if (budget < purchase) {
           pointRemains = budget + ' points remaining, you cannot afford this purchase.';
           outputBudget.innerHTML = pointRemains;
           pointCost = 'cost: ' + purchase + ' points.';
           outputCost.innerHTML = pointCost;
+          resetDrop();
         } else if (budget >= purchase) {
           //newChoice is pushed to newCharacter abilityList.
           newCharacter.abilityList.push(newChoice);
           calcDef();
           //Get the outputCost element, create text, output point cost to the dom.
-          pointCost = 'cost: ' + purchase + ' points.';
+          pointCost = newChoice.name + ' cost: ' + purchase + ' points.';
           outputCost.innerHTML = pointCost;
           //Subtract purchase from the budget.
           budget -= purchase;
           //Get the outputBudget element, create text, output remaining budget to the dom.
-          pointRemains = budget + ' points remaining';
+          pointRemains = 'You have ' + budget + ' points remaining';
           outputBudget.innerHTML = pointRemains;
           character = document.getElementById('character');
           //Create a list node.
@@ -173,4 +175,12 @@ abilityChoice.addEventListener('change', function() {
     } 
     def = 'REF: ' + Math.ceil(newCharacter.reflex / 2) + ' ' + 'SPIRIT: ' + Math.ceil(newCharacter.spirit / 2) + ' ' + 'WITS: ' + Math.ceil(newCharacter.wits / 2);
     outputDef.innerHTML = def;
+    resetDrop();
+  }
+
+function resetDrop() {
+  var aS = document.getElementById("abilitySelect");
+  var gS = document.getElementById("gradeSelect");
+  aS.selectedIndex = 0;
+  gS.selectedIndex = 0;
 }
