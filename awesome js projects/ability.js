@@ -3,6 +3,11 @@ var budget = 30;
 let currentAbility;
 let currentGrade;
 var newAbility;
+var purchase = 0;
+var outputBudget = document.getElementById('outputBudget');
+var outputCost = document.getElementById('outputCost');
+var outputDef = document.getElementById('outputDef');
+var newChoice;
 //This array houses the grade options.
 grades = [
   {text: 'select', grade: '', pool: 0},
@@ -116,32 +121,56 @@ abilityChoice.addEventListener('change', function() {
         //Stores user pick in newGrade.
         newGrade = grades[i];
         //Combines user ability and grade pick into newChoice variable.
-        var newChoice = Object.assign(newAbility, newGrade);
+        newChoice = Object.assign(newAbility, newGrade);
         console.log(newChoice);
-        //newChoice is pushed to newCharacter abilityList.
-        newCharacter.abilityList.push(newChoice);
         //The result of the ability cost multiplied by the grade pool is stored in purchase.
         purchase = newChoice.cost * newChoice.pool;
-        //Get the outputCost element, create text, output point cost to the dom.
-        outputCost = document.getElementById('outputCost');
-        pointCost = document.createTextNode('cost: ' + purchase + ' points.');
-        outputCost.appendChild(pointCost);
-        //Subtract purchase from the budget.
-        budget -= purchase;
-        //Get the outputBudget element, create text, output remaining budget to the dom.
-        outputBudget = document.getElementById('outputBudget');
-        pointRemains = document.createTextNode(budget + ' points remaining');
-        outputBudget.appendChild(pointRemains);
-        character = document.getElementById('character');
-        //Get the outputAbilities element, create text, output the ability to the dom.
-
-        //Create a list node.
-        item = document.createElement('li');
-        abilityText = document.createTextNode('' + newChoice.name + ' '+ newChoice.grade + ' ' + newChoice.pool + '');
-        //Append text to list.
-        item.appendChild(abilityText);
-        list = document.getElementById('list');
-        list.insertBefore(item, list.childNodes[0]);
+        if (budget == 0) {
+          pointRemains = budget + ' points remaining, you are out of points.';
+          outputBudget.innerHTML = pointRemains;
+          pointCost = '';
+          outputCost.innerHTML = pointCost;
+        } else if (budget < purchase) {
+          pointRemains = budget + ' points remaining, you cannot afford this purchase.';
+          outputBudget.innerHTML = pointRemains;
+          pointCost = 'cost: ' + purchase + ' points.';
+          outputCost.innerHTML = pointCost;
+        } else if (budget >= purchase) {
+          //newChoice is pushed to newCharacter abilityList.
+          newCharacter.abilityList.push(newChoice);
+          calcDef();
+          //Get the outputCost element, create text, output point cost to the dom.
+          pointCost = 'cost: ' + purchase + ' points.';
+          outputCost.innerHTML = pointCost;
+          //Subtract purchase from the budget.
+          budget -= purchase;
+          //Get the outputBudget element, create text, output remaining budget to the dom.
+          pointRemains = budget + ' points remaining';
+          outputBudget.innerHTML = pointRemains;
+          character = document.getElementById('character');
+          //Create a list node.
+          item = document.createElement('li');
+          abilityText = document.createTextNode('' + newChoice.name + ' '+ newChoice.grade + ' ' + newChoice.pool + '');
+          //Append text to list.
+          item.appendChild(abilityText);
+          list = document.getElementById('list');
+          list.insertBefore(item, list.childNodes[0]);
+        }
       }
     }
   })
+
+  function calcDef() {
+    if (newChoice.defense == "reflex") {
+      newCharacter.reflex += newChoice.pool;
+      console.log(newCharacter.reflex);
+    } else if (newChoice.defense == "spirit") {
+      newCharacter.spirit += newChoice.pool;
+      console.log(newCharacter.spirit);
+    } else if (newChoice.defense == "wits") {
+      newCharacter.wits += newChoice.pool;
+      console.log(newCharacter.wits);
+    } 
+    def = 'REF: ' + Math.ceil(newCharacter.reflex / 2) + ' ' + 'SPIRIT: ' + Math.ceil(newCharacter.spirit / 2) + ' ' + 'WITS: ' + Math.ceil(newCharacter.wits / 2);
+    outputDef.innerHTML = def;
+}

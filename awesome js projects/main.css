@@ -23,7 +23,8 @@ h2 {
 #statOptions,
 #addAbility,
 #gradeSelect,
-#abilitySelect {
+#abilitySelect,
+#abilityFrame {
   display: none;
 }
 
@@ -41,16 +42,35 @@ select {
   margin: 5px 0 20px 0;
 }
 
+.options select {
+  min-width: 1em;
+  margin: auto;
+}
+
 #outputName, #outputInt, #outputWill, #outputPhy  {
   text-transform: uppercase;
   font-size: 25px;
   margin: 10px 0 10px 0;
 }
 
+#outputDef  {
+  text-transform: uppercase;
+  font-size: 20px;
+  margin: 10px 0 10px 0;
+}
+
 #list {
   text-transform: capitalize;
   list-style: none;
-  font-size: 25px;
+  font-size: 20px;
+}
+
+.options {
+  margin: 1em 0;
+}
+
+.options p {
+  margin: 1em;
 }
 
 /*MEDIA QUERIES*/
@@ -110,7 +130,15 @@ select {
     margin-left: 3em;
   }
 
-  #abilitySelect {
+  #abilityFrame {
+    max-width: 50%;
+    clear: both;
+    text-align: center;
+    padding: 0 1em;
+    margin: auto;
+  }
+
+  #abilitySelect{
     max-width: 20%;
     clear: both;
     text-align: center;

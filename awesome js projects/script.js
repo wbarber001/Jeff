@@ -8,15 +8,18 @@ let abilityText = document.getElementById('outputAbilities');
 var intStat;
 var willStat;
 var phyStat;
+var reflex = 0;
+var spirit = 0;
+var wits = 0;
 
 let startCharacter = document.getElementById('startCharacter');
 startCharacter.addEventListener('click', nameCharacter);
 //This function collects character data.
 function Character() {
   this.name = name;
-  this.totalReflexDefense = "";
-  this.totalSpiritDefense = "";
-  this.totalWitsDefense = "";
+  this.reflex = reflex;
+  this.spirit = spirit;
+  this.wits = wits;
   this.int = intStat;
   this.will = willStat;
   this.phy = phyStat;
@@ -51,8 +54,18 @@ function toggleStartButton() {
     }
 }
 
+function toggleAbilityframe() {
+    var x = document.getElementById('abilityFrame');
+    if (x.style.display === 'block') {
+        x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
+    }
+}
+
 function toggleAbilityDrop() {
     var x = document.getElementById('abilitySelect');
+    toggleAbilityframe();
     toggleGradeDrop();
     if (x.style.display === 'block') {
         x.style.display = 'none';
@@ -74,6 +87,7 @@ function toggleGradeDrop() {
 int.addEventListener('change', function() {
   let intVal = int.options[int.selectedIndex].text;
   intStat = int.options[int.selectedIndex].value;
+  wits = parseInt(intStat);
   // Add that data to the <div>
   intText.innerHTML = 'INT: ' + intVal;
 })
@@ -81,12 +95,14 @@ int.addEventListener('change', function() {
 will.addEventListener('change', function() {
   let willVal = will.options[will.selectedIndex].text;
   willStat = will.options[will.selectedIndex].value;
+  spirit = parseInt(willStat);
   willText.innerHTML = 'WILL: ' + willVal;
 })
 
 phy.addEventListener('change', function() {
   let phyVal = phy.options[phy.selectedIndex].text;
   phyStat = phy.options[phy.selectedIndex].value;
+  reflex = parseInt(phyStat);
   phyText.innerHTML = 'PHY: ' + phyVal;
 })
 
